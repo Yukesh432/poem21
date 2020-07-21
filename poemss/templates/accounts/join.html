@@ -1,0 +1,116 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/singup.css' %}">
+    <style>
+    .article-pg header {
+        padding-bottom: 0; }
+    .article-pg header .bg-cover {
+      padding-bottom: 0px; }
+    .article-pg .breadc {
+      max-width: 150px; }
+    .article-pg .breadc .nav-item .nav-link {
+      font-size: 12px; 
+      color: #ffffff !important; }
+    </style>
+
+    <title>BLOG</title>
+</head>
+<body class="article-pg">
+    <header class="mt-0 pt-0">
+        <div class="bg-cover clearfix pt-3">
+            <h2 class="logo"> <a href="/">BLOG </a> </h2>
+
+            <input type="text" id="nav-search" class="nav-search mx-auto" name="" class="form-control">
+            <div class="ml-0 mr-0 pb-1">
+                <nav class="navbar navbar-expand-md">
+
+                    <button class="navbar-toggler ml-auto" data-target="#my-nav" data-toggle="collapse"
+                        aria-controls="my-nav" aria-expanded="false" onclick="myFunction(this)"
+                        aria-label="Toggle navigation">
+                        <span class="bar1"></span> <span class="bar2"></span> <span class="bar3"></span>
+                    </button>
+                    <div id="my-nav" class="collapse navbar-collapse">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/poem">POEM</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/story">STORY</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/blog">BLOG</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/lifestyle">LIFESTYLE</a>
+                            </li>
+                            <li class="nav-item">
+                                <form action="" method="POST">
+                                    <div class="input-group mt-0 mx-auto" style="width:16px;">
+
+                                        <div class="">
+                                            <img src="{% static "images/search-icon.png" %}" id="toggle-search"
+                                                class="ml-2 toggle-search" alt="search icon">
+                                        </div>
+                                    </div>
+                                </form>
+                            </li> 
+                        </ul>
+                    </div>
+                    {% if user.is_authenticated %}
+                            <a href="{% url 'profile' %}" class="nav-right" class="nav-item"> Profile</a>
+                            <a href="{% url 'logout' %}" class="nav-right" class="nav-item"> Logout</a>
+                    {% else %}
+                            <a href="{% url 'join' %}" class="nav-right" class="nav-item"> Register</a>
+                            <a href="{% url 'login' %}" class="nav-right" class="nav-item"> Login</a>
+                    {% endif %}
+                </nav>
+            </div>
+        </div>
+    </header>
+    {%block content%}
+    {%include 'accounts/alerts.html' %}
+        <div id="login-box">
+            
+            <form action="{% url 'join' %}" method="POST">
+                {% csrf_token %}
+            <div class="left-join">
+                <h1 class="joinhead">Sign up</h1>
+    
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="text" name="email" placeholder="E-mail" required />
+                <input type="password" name="password" placeholder="Password" required/>
+                <input type="password" name="password2" placeholder="Retype password" required/>    
+                <input type="submit" name="signup_submit" value="Register" />
+            </div>
+        </form>
+  
+            <div class="right-join">
+                <span class="loginwith">Sign in with<br />social network</span>
+    
+                <button class="social-signin facebook">Log in with facebook</button>
+                <button class="social-signin twitter">Log in with Twitter</button>
+                <button class="social-signin google">Log in with Google+</button>
+            </div>
+            <div class="or">OR</div>
+        </div>
+    </main>
+    <script src="{%static "js/popper.min.js" %}"></script>
+    <script src="{%static "js/jquery-1.12.0.min.js" %}"></script>
+    <script src="{%static "js/bootstrap.min.js" %}"></script>
+    <script src="{%static "js/owl.carousel.min.js" %}"></script>
+    <script src="{%static "js/article.js" %}"></script>
+    <script src="{%static "js/main.js" %}"></script>
+    {% endblock %}
+    
+</body>
+</html>

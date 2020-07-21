@@ -1,0 +1,39 @@
+{% extends 'accounts/join.html' %}
+{% load static %}
+
+
+{% block content %}
+{% block jpt %}
+{%include 'accounts/alerts.html' %}
+<div id="login-box">
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+    <div class="left-join">
+        <h1 class="joinhead">Sign In</h1>
+
+        <input type="text" name="username" placeholder="Username" required>
+        
+        <input type="password" name="password" placeholder="Password" required>
+        
+        <input type="submit" name="signup_submit" value="Login" >
+    </div>
+</form>
+ 
+    <div class="right-join">
+        <span class="loginwith">Sign in with<br/>social network</span>
+
+        <button class="social-signin facebook">Log in with facebook</button>
+        <button class="social-signin twitter">Log in with Twitter</button>
+        <button class="social-signin google">Log in with Google+</button>
+    </div>
+    <div class="or">OR</div>
+</div>
+</main>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{%static 'js/jquery-1.12.0.min.js' %}"></script>
+<script src="{%static 'js/bootstrap.min.js' %}"></script>
+<script src="{%static 'js/owl.carousel.min.js' %}"></script>
+<script src="{%static 'js/article.js' %}"></script>
+<script src="{%static 'js/main.js' %}"></script>
+{% endblock jpt %}
+{% endblock %}
